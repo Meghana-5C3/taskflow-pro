@@ -1,0 +1,498 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>TaskFlow Pro</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <!-- EMAILJS -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+  <div class="nav-logo">
+
+    <i class="fa-solid fa-layer-group"></i>
+
+    <span>TaskFlow</span>
+
+  </div>
+
+  <div class="nav-links">
+
+    <a href="#todoSection">
+
+      Todo List
+
+    </a>
+
+    <a href="#gallerySection">
+
+      Gallery
+
+    </a>
+
+    <a href="#contactSection">
+
+      Contact
+
+    </a>
+
+  </div>
+
+</nav>
+
+
+<div class="container">
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+
+      <i class="fa-solid fa-layer-group"></i>
+
+      <h2>TaskFlow</h2>
+
+    </div>
+
+    <button id="themeToggle">
+
+      <i class="fa-solid fa-moon"></i>
+      Toggle Theme
+
+    </button>
+
+    <!-- TASK FORM -->
+
+    <div class="todo-form">
+
+      <h3>Create Task</h3>
+
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Task title"
+      >
+
+      <textarea
+        id="taskDescription"
+        placeholder="Task description"
+      ></textarea>
+
+      <select id="taskPriority">
+
+        <option value="High">
+          High Priority
+        </option>
+
+        <option value="Medium">
+          Medium Priority
+        </option>
+
+        <option value="Low">
+          Low Priority
+        </option>
+
+      </select>
+
+      <button id="addTaskBtn">
+
+        Add Task
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div>
+
+        <h1>Productivity Dashboard</h1>
+
+        <p>
+          Manage tasks, gallery and contacts
+        </p>
+
+      </div>
+
+      <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          type="text"
+          id="searchTask"
+          placeholder="Search tasks..."
+        >
+
+      </div>
+
+    </header>
+
+
+    <!-- ANALYTICS -->
+
+    <section class="analytics-grid">
+
+      <div class="analytics-card">
+
+        <h3>Total Tasks</h3>
+
+        <p id="totalTasks">0</p>
+
+      </div>
+
+      <div class="analytics-card">
+
+        <h3>Completed</h3>
+
+        <p id="completedTasks">0</p>
+
+      </div>
+
+      <div class="analytics-card">
+
+        <h3>Pending</h3>
+
+        <p id="pendingTasks">0</p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TODO BOARD
+    ========================== -->
+
+    <section
+      class="todo-section"
+      id="todoSection"
+    >
+
+      <div class="section-title">
+
+        <h2>Task Board</h2>
+
+      </div>
+
+      <div class="todo-grid">
+
+        <!-- TODO -->
+
+        <div class="task-column">
+
+          <div class="column-header todo">
+
+            Todo
+
+          </div>
+
+          <div
+            id="todoList"
+            class="task-list"
+          ></div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="task-column">
+
+          <div class="column-header progress">
+
+            In Progress
+
+          </div>
+
+          <div
+            id="progressList"
+            class="task-list"
+          ></div>
+
+        </div>
+
+
+        <!-- DONE -->
+
+        <div class="task-column">
+
+          <div class="column-header done">
+
+            Done
+
+          </div>
+
+          <div
+            id="doneList"
+            class="task-list"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+    ========================== -->
+
+    <section
+      class="gallery-section"
+      id="gallerySection"
+    >
+
+      <div class="section-title">
+
+        <h2>Project Gallery</h2>
+
+        <button
+          id="openModal"
+          class="primary-btn"
+        >
+
+          <i class="fa-solid fa-plus"></i>
+          Add Image
+
+        </button>
+
+      </div>
+
+      <div
+        class="gallery-grid"
+        id="galleryGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT FORM
+    ========================== -->
+
+    <section
+      class="contact-section"
+      id="contactSection"
+    >
+
+      <div class="section-title">
+
+        <h2>Contact Support</h2>
+
+      </div>
+
+      <form id="contactForm">
+
+        <div class="form-grid">
+
+          <!-- NAME -->
+
+          <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter full name"
+            >
+
+            <small id="nameError"></small>
+
+          </div>
+
+
+          <!-- EMAIL -->
+
+          <div class="form-group">
+
+            <label>Email Address</label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter email"
+            >
+
+            <small id="emailError"></small>
+
+          </div>
+
+
+          <!-- PHONE -->
+
+          <div class="form-group">
+
+            <label>Phone Number</label>
+
+            <input
+              type="text"
+              id="phone"
+              placeholder="Enter phone number"
+            >
+
+            <small id="phoneError"></small>
+
+          </div>
+
+
+          <!-- SUBJECT -->
+
+          <div class="form-group">
+
+            <label>Subject</label>
+
+            <input
+              type="text"
+              id="subject"
+              placeholder="Enter subject"
+            >
+
+            <small id="subjectError"></small>
+
+          </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group">
+
+          <label>Message</label>
+
+          <textarea
+            id="message"
+            placeholder="Enter your message"
+          ></textarea>
+
+          <small id="messageError"></small>
+
+        </div>
+
+        <button
+          type="submit"
+          class="submit-btn"
+        >
+
+          Send Message
+
+        </button>
+
+        <p id="successMessage"></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- =========================
+     IMAGE MODAL
+========================= -->
+
+<div
+  class="modal hidden"
+  id="imageModal"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-top">
+
+      <h2>Add Image</h2>
+
+      <button id="closeModal">
+
+        ✕
+
+      </button>
+
+    </div>
+
+    <input
+      type="text"
+      id="imageTitle"
+      placeholder="Image title"
+    >
+
+    <input
+      type="text"
+      id="imageUrl"
+      placeholder="Paste image URL"
+    >
+
+    <img
+      id="previewImage"
+      src=""
+      alt=""
+    >
+
+    <button
+      id="addImageBtn"
+      class="primary-btn"
+    >
+
+      Upload Image
+
+    </button>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
